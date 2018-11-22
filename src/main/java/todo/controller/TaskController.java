@@ -28,6 +28,12 @@ public class TaskController {
     @PostMapping("/task")
     public String taskSubmit(@ModelAttribute TaskDTO taskDTO) {
         taskService.saveTask(taskDTO,"user");
-        return "result";
+
+        /**
+         * using only 'task' won't work
+         * https://www.logicbig.com/examples/spring-mvc/redirect/spring-mvc-redirect-post-to-get.html
+         */
+        return "redirect:/task";
+
     }
 }

@@ -7,9 +7,12 @@
 <body>
 <h1>Tasks</h1>
 /* If empty, display message*/
-<div th:if="">
+<div th:if="${tasks != null}">
     <ul>
-        <li th:each="task: ${}"></li>
+        <li th:each="task: ${tasks}">
+            <span style="font-weight:bold" th:text="${task.title}"></span>
+            <span th:text="${task.content}"></span>
+        </li>
     </ul>
 </div>
 <h1>Form</h1>
