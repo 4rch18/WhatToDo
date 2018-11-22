@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TaskService {
 
-    void saveTask(TaskDTO taskDTO);
+    void saveTask(TaskDTO taskDTO, String username);
 
     List<TaskDTO> findTaskByUsername(String username);
 }

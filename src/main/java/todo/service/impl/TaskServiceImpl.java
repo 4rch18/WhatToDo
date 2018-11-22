@@ -17,8 +17,8 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public void saveTask(TaskDTO taskDTO) {
-        taskRepository.save(toTask(taskDTO));
+    public void saveTask(TaskDTO taskDTO, String username) {
+        taskRepository.save(toTask(taskDTO,username));
     }
 
     @Override
@@ -32,17 +32,16 @@ public class TaskServiceImpl implements TaskService {
         return taskDTOS;
     }
 
-    private Task toTask(TaskDTO taskDTO){
+    private Task toTask(TaskDTO taskDTO, String username){
         return Task.builder().title(taskDTO.getTitle())
                 .content(taskDTO.getContent())
-                .username(taskDTO.getUsername())
+                .username(username)
                 .build();
     }
 
     private TaskDTO toTaskDTO(Task task){
         return TaskDTO.builder().content(task.getContent())
                 .title(task.getTitle())
-                .username(task.getUsername())
                 .build();
     }
 }

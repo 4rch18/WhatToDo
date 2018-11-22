@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>Result</h1>
-<p th:text="'id: ' + ${toDoTask.id}" />
-<p th:text="'content: ' + ${toDoTask.content}" />
+<p th:text="'id: ' + ${taskDTO.title}" />
+<p th:text="'content: ' + ${taskDTO.content}" />
 <a href="/task">Submit another message</a>
 </body>
 </html>
