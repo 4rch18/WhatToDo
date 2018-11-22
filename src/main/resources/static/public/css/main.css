@@ -1201,3 +1201,14 @@ input, select, textarea {
 			}
 
 		}
+
+
+/* Custom CSS */
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 40%;
+}

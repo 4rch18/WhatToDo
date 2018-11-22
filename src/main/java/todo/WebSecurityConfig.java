@@ -13,6 +13,15 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    /**
+     * @param http
+     * @throws Exception
+     *
+     * /public/** for css,js usage
+     * https://stackoverflow.com/questions/45536972/how-add-css-and-js-to-spring-boot-application/45537528
+     */
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

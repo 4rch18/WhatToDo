@@ -1,41 +1,86 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <head>
-    <title>What to do?</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Eventually by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="http://localhost:8080/public/css/main.css" />
 </head>
-<body>
-<div th:inline="text">Hi [[${#httpServletRequest.remoteUser}]]!
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <h2>WhatToDo</h2>
+</header>
+
+<div th:inline="text">Hi [[${#httpServletRequest.remoteUser}]]!</div>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
+
+<div class="row">
+    <div class="column">
+            <h1>New To-Do</h1>
+            <form action="#" th:action="@{/task}" th:object="${emptyTask}" method="post">
+                <p>
+                    <input type="text" th:field="*{title}" placeholder="Title" />
+                </p>
+                <p>
+                    <input type="text" th:field="*{content}" placeholder="Content" />
+                </p>
+                <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+            </form>
+    </div>
+    <div class="column">
+            <h1>Tasks</h1>
+            <div th:if="${tasks != null}">
+
+                <!--
+                Working with lists in Thymeleaf
+                > https://stackoverflow.com/questions/26049708/spring-thymleaf-and-lists-of-strings
+                -->
+
+                <ul>
+                    <li th:each="task: ${tasks}">
+                        <span style="font-weight:bold" th:text="${task.title}"></span>:
+                        <span th:text="${task.content}"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div th:unless="${tasks != null}">
+                <p>There is no task to do!</p>
+            </div>
+    </div>
 </div>
 
 
-<h1>Tasks</h1>
-<div th:if="${tasks != null}">
-
-    <!--
-    Working with lists in Thymeleaf
-    > https://stackoverflow.com/questions/26049708/spring-thymleaf-and-lists-of-strings
-    -->
-
-    <ul>
-        <li th:each="task: ${tasks}">
-            <span style="font-weight:bold" th:text="${task.title}"></span>:
-            <span th:text="${task.content}"></span>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <!--li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li-->
+        <li></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; Untitled.</li>
+        <li>
+            <a href="https://github.com/4rch18/WhatToDo">
+                Github <span href="https://github.com/4rch18/WhatToDo" class="icon fa-github"></span>
+            </a>
         </li>
     </ul>
-</div>
-<div th:unless="${tasks != null}">
-    <p>There is no task to do!</p>
-</div>
+</footer>
 
-<h1>Form</h1>
-<form action="#" th:action="@{/task}" th:object="${emptyTask}" method="post">
-    <p>Title: <input type="text" th:field="*{title}" /></p>
-    <p>Content: <input type="text" th:field="*{content}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
+<!-- Scripts -->
+<script src="http://localhost:8080/public/js/main.js"></script>
+
 </body>
 </html>
