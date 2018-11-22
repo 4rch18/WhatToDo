@@ -1,24 +1,40 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>What to do?</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div th:inline="text">Hi [[${#httpServletRequest.remoteUser}]]!
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
+
 <h1>Tasks</h1>
-/* If empty, display message*/
 <div th:if="${tasks != null}">
+
+    <!--
+    Working with lists in Thymeleaf
+    > https://stackoverflow.com/questions/26049708/spring-thymleaf-and-lists-of-strings
+    -->
+
     <ul>
         <li th:each="task: ${tasks}">
-            <span style="font-weight:bold" th:text="${task.title}"></span>
+            <span style="font-weight:bold" th:text="${task.title}"></span>:
             <span th:text="${task.content}"></span>
         </li>
     </ul>
 </div>
+<div th:unless="${tasks != null}">
+    <p>There is no task to do!</p>
+</div>
+
 <h1>Form</h1>
 <form action="#" th:action="@{/task}" th:object="${emptyTask}" method="post">
-    <p>Id: <input type="text" th:field="*{title}" /></p>
-    <p>Message: <input type="text" th:field="*{content}" /></p>
+    <p>Title: <input type="text" th:field="*{title}" /></p>
+    <p>Content: <input type="text" th:field="*{content}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>
