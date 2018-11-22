@@ -1,20 +1,60 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>What to do?</title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label>User Name: <input type="text" name="username"/> </label></div>
-            <div><label>Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </body>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<head>
+    <title>Eventually by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="http://localhost:8080/public/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <h1>WhatToDo</h1>
+    <p>A simple to do app to keep you on schedule</p>
+</header>
+
+<!-- Signup Form -->
+
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post" class="signup-form">
+    <div><input type="text" name="username" id="username" placeholder="Username" /></div>
+    <div><input type="password" name="password" id="password" placeholder="Password" /></div>
+    <div><input type="submit" value="Sign In" /></div>
+</form>
+
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <!--li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li-->
+        <li></li>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; Untitled.</li>
+        <li>
+            <a href="https://github.com/4rch18/WhatToDo">
+                Github <span href="https://github.com/4rch18/WhatToDo" class="icon fa-github"></span>
+            </a>
+        </li>
+    </ul>
+</footer>
+
+<!-- Scripts -->
+<script src="http://localhost:8080/public/js/main.js"></script>
+
+</body>
 </html>
